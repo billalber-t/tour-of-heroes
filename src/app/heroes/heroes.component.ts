@@ -11,20 +11,18 @@ import { MessageService } from '../message.service';
 })
 export class HeroesComponent {
 
-  constructor(private heroService: HeroService, private messageService: MessageService) { }
-
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
-
   heroes: Hero[] = [];
 
+  constructor(private heroService: HeroService) { }
 
-  selectedHero?: Hero;
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  // selectedHero?: Hero;
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  // }
+
+  ngOnInit(): void {
+    this.getHeroes();
   }
 
   getHeroes(): void {
@@ -32,8 +30,6 @@ export class HeroesComponent {
       .subscribe(heroes => this.heroes = heroes);
   }
 
-  ngOnInit(): void {
-    this.getHeroes();
-  }
+
 
 }
